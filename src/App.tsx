@@ -6,6 +6,7 @@ import {
   DOMMessageResponseUnion,
 } from './types';
 import { ReactComponent as CloseIcon } from './svg/close_black_24dp.svg';
+import { ReactComponent as GithubIcon } from './svg/github.svg';
 import styled from 'styled-components';
 
 const round = (number: number, precision1 = 2, precision2 = precision1) => {
@@ -109,7 +110,7 @@ const Button = styled.button`
     background-color: hsla(0, 0%, 0%, 0.25);
     cursor: pointer;
   }
-  margin-left: 0.25rem;
+  margin-left: 0.5rem;
 `;
 
 const SideBar = styled.div`
@@ -318,18 +319,20 @@ function App() {
         <span>Canvas Grader</span>
         <div className="app-header-icons">
           <Button
-            onClick={() => {
-              navigateQuery('https://github.com/codyduong/canvas-grader');
+            onClick={async () => {
+              await chrome.tabs.create({
+                url: 'https://github.com/codyduong/canvas-grader',
+              });
             }}
           >
-            <CloseIcon fill={'#ffffff'} />
+            <GithubIcon width={24} height={24} fill={'#ffffff'} />
           </Button>
           <Button
             onClick={() => {
               window.close();
             }}
           >
-            <CloseIcon fill={'#ffffff'} />
+            <CloseIcon width={24} height={24} fill={'#ffffff'} />
           </Button>
         </div>
       </header>

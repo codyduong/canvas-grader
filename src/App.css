@@ -1,3 +1,7 @@
+.root {
+  overflow: hidden;
+}
+
 .app {
   background: #ffffff;
   min-width: 700px;
@@ -20,10 +24,11 @@
 
 .app-body {
   padding: 1rem;
-  max-height: 720px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
+  overflow-y: scroll;
+  max-height: 500px;
 }
 
 .assignment {
@@ -76,4 +81,8 @@
 
 .wrappable {
   white-space: pre-wrap;
+}
+
+.svg {
+  display: block;
 }
