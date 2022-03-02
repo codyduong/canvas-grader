@@ -1,0 +1,79 @@
+.app {
+  background: #ffffff;
+  min-width: 700px;
+  transition: ease-in-out;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background: #08345c;
+  font-size: large;
+  color: #ffffff;
+}
+
+.app-header-icons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.app-body {
+  padding: 1rem;
+  max-height: 720px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+.assignment {
+  text-align: left;
+}
+
+.assignment-title {
+  display: flex;
+  align-items: flex-start;
+  flex-flow: column nowrap;
+  padding: 0.5rem;
+}
+
+.assignment-title > span {
+  font-weight: normal;
+}
+
+.assignment-link {
+  color: hsl(214 100% 33%);
+  text-decoration: none;
+}
+
+.assignment-link:hover {
+  text-decoration: underline;
+  color: rgb(0, 59, 135);
+}
+
+.assignment > td {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.assignment:hover {
+  background-color: #e8f4fc;
+}
+
+.assignment-thead-tr > th {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  white-space: nowrap;
+}
+
+.category-thead-tr {
+  padding: 0.5rem;
+}
+
+.sidebar-thead-tr-weight {
+  padding-left: 0.5rem;
+}
+
+.wrappable {
+  white-space: pre-wrap;
+}
