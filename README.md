@@ -2,7 +2,10 @@
 This is an extension I wrote to quickly at a glance analyze my grades for classes that have their grades hidden.
 
 ### Installation
-Download from the releases and unzip. Load the folder in it's entirety at `chrome://extensions`
+1. Download from the releases and unzip to `./build` or whatever you desire to name it. 
+2. Go to `chrome://extensions` and enable developer mode
+3. Load the folder you unpacked the `build.zip` into.
+4. Ready to use via extension bar.
 
 It is being uploaded to the Chrome Store for convenience, but is still being processed.
 
