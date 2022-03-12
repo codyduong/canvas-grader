@@ -176,12 +176,11 @@ function App() {
            */
           if (tabs[0].url?.includes('canvas')) {
             setUrl(tabs[0].url);
-            chrome.tabs.sendMessage(
+            chrome.tabs.sendMessage<DOMMessage>(
               tabs[0].id || 0,
-              { type: 'GET_DOM' } as DOMMessage,
+              { type: 'GET_DOM', url: tabs[0].url },
               (response: DOMMessageResponseUnion) => {
                 if (response) {
-                  console.log(response);
                   setResponse(response);
                 }
               }

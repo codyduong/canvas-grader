@@ -1,8 +1,9 @@
-import {
+import type {
   DOMMessage,
   DOMMessageResponse,
   DOMMessageResponseUnion,
 } from '../types';
+import UNIVERSITIES from './parsers/index';
 
 //Because it's formatted either as a string, or -
 const handleNumberAndDash = (string: string | undefined) => {
@@ -19,7 +20,8 @@ const messagesFromReactAppListener = (
   sender: chrome.runtime.MessageSender,
   sendResponse: (response: DOMMessageResponseUnion) => void
 ) => {
-  const categories: DOMMessageResponse['categories'] = [];
+  const domain = msg.url.split('/')[2];
+  let categories: DOMMessageResponse['categories'] = [];
 
   const table = document.getElementById('grades_summary');
   if (!table) {
@@ -27,33 +29,12 @@ const messagesFromReactAppListener = (
     return;
   }
   try {
-    const assignmentsWeightedSummary = document
-      .getElementById('assignments-not-weighted')
-      ?.getElementsByClassName('summary')?.[0]
-      ?.getElementsByTagName('tbody')?.[0];
-
-    if (assignmentsWeightedSummary) {
-      for (const element of Array.from(
-        assignmentsWeightedSummary.getElementsByTagName('tr')
-      )) {
-        const weight = element.getElementsByTagName('td')[0];
-        const text = weight?.innerText ?? '';
-        const strippedText = text.replace(/[^0-9.]+/g, '');
-        const name = element.getElementsByTagName('th')[0]?.innerText;
-        if (['total', 'group'].includes(name.toLowerCase())) {
-          continue;
-        }
-
-        if (text.includes('%')) {
-          categories.push({
-            name,
-            weight: Number(strippedText) * 0.01,
-          });
-        } else {
-          categories.push({
-            name,
-            weight: Number(strippedText),
-          });
+    for (const university of UNIVERSITIES) {
+      if (domain === university.domain) {
+        for (const parser of university.parsers) {
+          if (parser.identifier()) {
+            categories = parser.catergoriesAndWeights();
+          }
         }
       }
     }
@@ -81,7 +62,7 @@ const messagesFromReactAppListener = (
         if (categories.filter(({ name }) => name === category).length == 0) {
           categories.push({
             name: category,
-            weight: 1,
+            weight: -1,
           });
         }
         return {
@@ -100,10 +81,19 @@ const messagesFromReactAppListener = (
           ),
         };
       });
+
+    //This is to distribute any weight equally to intentionally unassigned categories (-1) versus (0)
+    const categoryCount = categories.length;
+    categories.forEach((category, index) => {
+      if (category.weight === -1) {
+        categories[index] = { ...category, weight: 1 / categoryCount };
+      }
+    });
+
     const response: DOMMessageResponseUnion = {
       assignments: assignments,
       categories: categories,
-      isWeighted: !!assignmentsWeightedSummary,
+      weighted: 'arithmetic',
     };
 
     sendResponse(response);

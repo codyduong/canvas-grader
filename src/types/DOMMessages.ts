@@ -1,5 +1,8 @@
+import { ParserReturn } from '../chromeServices/parsers/parser.types';
+
 export type DOMMessage = {
   type: 'GET_DOM';
+  url: string;
 };
 
 export type DOMMessageResponse = {
@@ -10,11 +13,8 @@ export type DOMMessageResponse = {
     score: number | null;
     score_out_of: number | null;
   }[];
-  categories: {
-    name: string;
-    weight: number | null;
-  }[];
-  isWeighted: boolean;
+  categories: ReturnType<ParserReturn['catergoriesAndWeights']>;
+  weighted: ParserReturn['weighted'];
 };
 
 export type DOMMessageResponseUnion = DOMMessageResponse | false;

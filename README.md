@@ -17,16 +17,14 @@ It is being uploaded to the Chrome Store for convenience, but is still being pro
 ❌ - Not implemented (and planned)
 | Description  | Status |
 | ------------- | ------------- |
-| Arithmetic Mean  | ✅  |
-| What If Scores[^1] | ✅  |
-| Show Category Grades | 🐣  |
-| Geometric Mean  | ❌  |
-| Custom Weighting[^2]  | ❌  |
-| Calculate Needed Scores[^3]  | ❌  |
+| Arithmetic Mean | ✅ |
+| Geometric Mean | ❌ |
+| What If Scores | ✅ |
+| Show Category Grades | 🐣 |
+| Custom Weighting | ❌ |
+| Calculate Needed Scores | ❌ |
+| Complex Arithmetic/Geometric Grading Scales | ❌ | 
 
-[^1]: Will calculate the grade based on "what if" scores if so desired
-[^2]: Currently will only import weighted grades if possible (ie. an opiniated format utilized by the KU Math Department works).
-[^3]: Calculate the needed score on the next exam/assignment to get a desired grade.
 
 ### Preview
 ![Preview of Canvas Grade Calculator](docs/preview1.PNG)
