@@ -18,11 +18,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "craco start",
     "build": "craco build",
-    "test": "react-scripts test",
+    "test": "craco test",
     "eject": "react-scripts eject",
-    "ci":  "yarn install --frozen-lockfile",
+    "ci": "yarn install --frozen-lockfile",
     "lint": "prettier \"./src/**/*{ts, tsx}\" && eslint \"./src/**/*{ts,tsx}\" -c \".eslintrc.js\"",
     "lint:fix": "prettier --write \"./src/**/*{ts, tsx}\" && eslint \"./src/**/*{ts,tsx}\" --fix -c \".eslintrc.js\""
   },
@@ -53,6 +53,7 @@
     "eslint": "^8.10.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.2",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "url": "^0.11.0"
   }
 }
